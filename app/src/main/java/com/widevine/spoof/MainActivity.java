@@ -22,8 +22,8 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private static final String ID_FILE = "/data/adb/widevine-spoof/id";
-    private static final String UID_FILE = "/data/adb/widevine-spoof/target_uids.txt";
+    private static final String ID_FILE = "/data/local/tmp/widevine-spoof/id";
+private static final String UID_FILE = "/data/local/tmp/widevine-spoof/target_uids.txt";
 
     private TextView tvCurrentId;
     private TextView tvStatus;
