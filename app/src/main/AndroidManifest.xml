@@ -31,10 +31,4 @@
             android:resource="@array/xposedscope" />
     </application>
 
-    <resources>
-        <string-array name="xposedscope">
-            <item>android</item>
-            <item>com.android.phone</item>
-        </string-array>
-    </resources>
 </manifest>
