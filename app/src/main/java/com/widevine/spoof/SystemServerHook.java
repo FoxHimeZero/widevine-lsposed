@@ -12,7 +12,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class SystemServerHook implements IXposedHookLoadPackage {
 
     private static final String TAG = "WidevineSpoof/System";
-    private static final String ID_FILE = "/data/adb/widevine-spoof/id";
+    private static final String ID_FILE = "/data/local/tmp/widevine-spoof/id";
     private static byte[] sFakeId = null;
 
     private static byte[] loadFakeId() {
