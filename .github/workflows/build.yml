@@ -15,11 +15,10 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          accept-android-sdk-licenses: 'yes'
 
-      - name: Install SDK components
+      - name: Accept licenses & install components
         run: |
+          yes | sdkmanager --licenses || true
           sdkmanager "platforms;android-34" "build-tools;34.0.0"
 
       - name: Download Xposed API
