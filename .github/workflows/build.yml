@@ -1,0 +1,41 @@
+name: Build LSPosed APK
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Download Xposed API
+        run: |
+          mkdir -p app/libs
+          curl -fL -o app/libs/api-82.jar \
+            https://api.xposed.info/de/robv/android/xposed/api/82/api-82.jar
+          ls -la app/libs/api-82.jar
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: 8.5
+
+      - name: Build with Gradle
+        run: gradle assembleRelease --no-daemon --project-dir .
+
+      - name: Verify APK
+        run: |
+          echo "=== 构建产物 ==="
+          find app/build/outputs/apk -name "*.apk" -exec ls -la {} \;
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lsposed-apk
+          path: app/build/outputs/apk/release/*.apk
