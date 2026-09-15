@@ -178,9 +178,10 @@ private static final String UID_FILE = "/data/local/tmp/widevine-spoof/target_ui
                 // 用 su 写，避免权限问题
                 StringBuilder sb = new StringBuilder();
                 for (String u : uids) sb.append(u).append("\n");
-                String cmd = "mkdir -p /data/adb/widevine-spoof && " +
-                             "echo '" + sb.toString().replace("'", "'\\''") + "' > " + UID_FILE + " && " +
-                             "chmod 644 " + UID_FILE;
+                String cmd = "mkdir -p /data/local/tmp/widevine-spoof && " +
+             "chmod 755 /data/local/tmp/widevine-spoof && " +
+             "echo '" + sb.toString().replace("'", "'\\''") + "' > " + UID_FILE + " && " +
+             "chmod 644 " + UID_FILE;
                 execSu(cmd);
             } catch (Exception ignored) {}
         }).start();
