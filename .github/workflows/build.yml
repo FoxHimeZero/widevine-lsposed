@@ -7,13 +7,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: 'yes'
+
+      - name: Install SDK components
+        run: |
+          sdkmanager "platforms;android-34" "build-tools;34.0.0"
 
       - name: Download Xposed API
         run: |
@@ -28,7 +35,7 @@ jobs:
           gradle-version: 8.5
 
       - name: Build with Gradle
-        run: gradle assembleRelease --no-daemon --project-dir .
+        run: gradle assembleRelease --no-daemon
 
       - name: Verify APK
         run: |
