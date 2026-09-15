@@ -9,7 +9,7 @@ import java.util.Set;
 public class TargetUidManager {
 
     private static final String TAG = "WidevineSpoof/Uid";
-    private static final String CONFIG_FILE = "/data/adb/widevine-spoof/target_uids.txt";
+    private static final String CONFIG_FILE = "/data/local/tmp/widevine-spoof/target_uids.txt";
     private static Set<Integer> sTargetUids = null;
     private static long sLastLoad = 0;
 
